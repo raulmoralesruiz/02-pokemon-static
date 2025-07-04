@@ -2,24 +2,18 @@
 import type { GetStaticPaths } from "astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import PokemonCard from "../../components/pokemons/PokemonCard.astro";
+import type { PokemonListResponse } from "../../interfaces/pokemon-list-response";
 
 const title = "Algún Pokemon";
 
-export const getStaticPaths = (() => {
-  return [
-    {
-      params: { name: "bulbasaur" },
-      props: { name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/" },
-    },
-    {
-      params: { name: "charmander" },
-      props: {
-        name: "charmander",
-        url: "https://pokeapi.co/api/v2/pokemon/4/",
-      },
-    },
-    // { params: { name: "squirtle" } },
-  ];
+export const getStaticPaths = (async () => {
+  const resp = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=151");
+  const { results } = (await resp.json()) as PokemonListResponse;
+
+  return results.map((item) => ({
+    params: { name: item.name },
+    props: { name: item.name, url: item.url },
+  }));
 }) satisfies GetStaticPaths;
 
 const { name } = Astro.params;
@@ -33,7 +27,7 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
     <div>
       <!-- <a href="/" class="hover:underline text-blue-500">Volver</a> -->
-      <a href="/" class="hover:underline text-blue-500">Volver</a>
+      <a href="/">Volver</a>
       <h1 class="text-5xl capitalize">{name}</h1>
     </div>
 
@@ -48,6 +42,7 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
 
 <style>
   @reference "tailwindcss"
+
   a {
     @apply hover:underline text-blue-500;
   }
