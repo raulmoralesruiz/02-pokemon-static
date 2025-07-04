@@ -1,9 +1,19 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import "../styles/global.css";
+import type { PokemonListResponse } from "../interfaces/pokemon-list-response";
+
+const resp = await fetch("https://pokeapi.co/api/v2/pokemon");
+const data = (await resp.json()) as PokemonListResponse;
+
 const title = "Pokemon Static | Home";
 ---
 
 <MainLayout title={title}>
-  <h1 class="text-3xl text-center">Astro</h1>
+  <h1 class="text-3xl text-center">Listado de Pokémons</h1>
+  <hr />
+
+  <ul class="text-center">
+    {data.results.map((pokemon) => <li>{pokemon.name}</li>)}
+  </ul>
 </MainLayout>
