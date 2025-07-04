@@ -26,12 +26,11 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
 <MainLayout title={title}>
   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
     <div>
-      <!-- <a href="/" class="hover:underline text-blue-500">Volver</a> -->
-      <a href="/">Volver</a>
+      <a href="/" class="hover:underline text-blue-500">Volver</a>
       <h1 class="text-5xl capitalize">{name}</h1>
     </div>
 
-    <PokemonCard name={name} url={url} />
+    <PokemonCard name={name} url={url} isBig />
 
     <audio controls class="mt-5">
       <source src={audioSrc} type="audio/ogg" />
@@ -39,11 +38,3 @@ const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pok
     </audio>
   </section>
 </MainLayout>
-
-<style>
-  @reference "tailwindcss"
-
-  a {
-    @apply hover:underline text-blue-500;
-  }
-</style>
