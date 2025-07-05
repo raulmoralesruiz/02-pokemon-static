@@ -10,6 +10,7 @@ const id = url.split("/").at(-2);
 const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 ---
 
+<!-- href={`/pokemon/${id}`} -->
 <a
   href={`/pokemons/${name}`}
   class:list={[
@@ -25,8 +26,8 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
     alt={name}
     class:list={[
       {
-        "size-48": isBig,
-        "size-24": !isBig,
+        "size-96": isBig,
+        "size-32": !isBig,
       },
     ]}
   />
