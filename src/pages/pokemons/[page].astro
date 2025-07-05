@@ -16,7 +16,9 @@ const { page } = Astro.props;
 ---
 
 <MainLayout title={title}>
-  <h1 class="text-3xl text-center">Listado de Pokémons</h1>
+  <a href="/pokemons/1">
+    <h1 class="text-3xl text-center">Listado de Pokémons</h1>
+  </a>
   <hr />
 
   <section
@@ -30,7 +32,7 @@ const { page } = Astro.props;
     }
   </section>
 
-  <section class="flex mt-10 gap-2 items-center">
+  <section class="flex mt-10 px-2 pb-2 gap-2 items-center">
     <!-- {
       page.url.prev && (
         <a class="btn" href={page.url.prev}>
