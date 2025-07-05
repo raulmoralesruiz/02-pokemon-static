@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { ClientRouter } from "astro:transitions";
+// import { ClientRouter } from "astro:transitions";
 import { siteInfo } from "src/globals/site-info";
 
 interface Props {
@@ -33,7 +33,12 @@ const {
 
     <title>{title}</title>
 
-    <ClientRouter />
+    <!-- <ClientRouter /> -->
+    <style>
+      @view-transition {
+        navigation: auto; /* enabled! */
+      }
+    </style>
   </head>
   <body class="bg-slate-800 text-slate-100 m-auto max-w-3xl">
     <main class="mt-5">
