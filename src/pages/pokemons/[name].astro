@@ -4,6 +4,7 @@ import MainLayout from "@layouts/MainLayout.astro";
 import PokemonCard from "@components/pokemons/PokemonCard.astro";
 import type { PokemonListResponse } from "@interfaces/pokemon-list-response";
 import Title from "@components/shared/Title.astro";
+import { Icon } from "astro-icon/components";
 
 export const getStaticPaths = (async () => {
   const resp = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=151");
@@ -29,11 +30,18 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
   image={imageSrc}
 >
   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
-    <div>
-      <button onclick="history.back()" class="hover:underline text-blue-500">
-        Volver
+    <div class="flex flex-row">
+      <div>
+        <button onclick="history.back()" class="hover:underline text-blue-500">
+          Volver
+        </button>
+        <Title> {name} </Title>
+      </div>
+
+      <button id="btn-favorite" class="ml-4 hover:animate-pulse">
+        <Icon name="heart-outline" class="text-red-500" size={50} />
+        <Icon name="heart-full" class="hidden text-red-500" size={50} />
       </button>
-      <Title> {name} </Title>
     </div>
 
     <PokemonCard name={name} url={url} isBig />
