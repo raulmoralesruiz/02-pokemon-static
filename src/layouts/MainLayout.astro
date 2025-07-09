@@ -1,7 +1,7 @@
 ---
 import NavBar from "@components/shared/NavBar.astro";
 import "../styles/global.css";
-// import { ClientRouter } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { siteInfo } from "src/globals/site-info";
 
 interface Props {
@@ -34,12 +34,12 @@ const {
 
     <title>{title}</title>
 
-    <!-- <ClientRouter /> -->
-    <style>
+    <ClientRouter />
+    <!-- <style>
       @view-transition {
         navigation: auto; /* enabled! */
       }
-    </style>
+    </style> -->
   </head>
   <body class="bg-slate-800 text-slate-100">
     <NavBar />
